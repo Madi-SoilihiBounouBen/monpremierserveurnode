@@ -6,7 +6,7 @@ const express = require('express');
 // J'initialise une application ExpressJs
 const app = express();
 
-app.use((req, res) =>{
+app.use((req, res) => {
     res.end("Bonjour, je suis le serveur!")
 });
 
