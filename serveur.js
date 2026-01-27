@@ -10,7 +10,7 @@ const http = require('http');
 const app = require('./app');
 
 //Je déclare une variable numéro de port
-const numeroPort = 3000;    
+const numeroPort = 3003;    
 
 // Je configure le numéro du port utiliser dans le serveur
 app.set('port', numeroPort);
@@ -32,5 +32,5 @@ server.listen(numeroPort, () => {
     console.log("Le serveur tourne sur le port " + numeroPort);
     console.log(date.toLocaleDateString());
     console.log( date.toLocaleTimeString());
-    console.log("Le serveur tourne au port" + numeroPort);
+    console.log("Le serveur tourne au port " + numeroPort);
 });
