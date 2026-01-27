@@ -30,6 +30,16 @@ app.use((req, res, nexte) => {
     
 });
 
+// J'ajoute un middleware qui gère la sécurité d'accès
+app.use((req, res, next) => {
+    //Je permet l'accès à mon API depuis n'importe quel origine
+    res.setHeader('Access-Control-Allow-Origin','*');
+    //J'autorise certaines en-têtes dans les requêtes reçues dans notre API. Les en-têtes autorisées sont : 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization'
+    res.setHeader('Access-Control-Allow-Headers','Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+    next();
+});
+
 // Je dessine mes Routes avex Express
 app.use('/api/fruit', (req, res) => {
     console.log("Je passe dans la route /api/fruit");
@@ -39,11 +49,25 @@ app.use('/api/fruit', (req, res) => {
             nom: "pomme",
             description: "fruit saisonier riche en vitamine C",
             prix: 3
+        },
+
+        {
+            id: 2,
+            nom: "Orange",
+            description: "Fruit riche en vitamine C",
+            prix: 3
+        },
+
+        {
+            id: 3,
+            nom: "Poire",
+            description: "fruit à pépins comestible au goût doux et sucré",
+            prix: 2
         }
     ];
-    //En terme de réponse, je renvoie le tableau de fruits
 
-    res.json(fruit);
+    //En terme de réponse, je renvoie le tableau de fruits
+    res.status(200).json(fruit);
 });
 /*
 j'exporte l'application express sous forme de module
