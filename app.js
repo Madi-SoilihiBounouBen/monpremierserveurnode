@@ -24,9 +24,9 @@ app.use((req, res, next) => {
 /**
  * J'utilise un Middleware 3 pour afficher le message dans la console
  */
-app.use((req, res, nexte) => {
+app.use((req, res, next) => {
     console.log("Bonjour, je suis le serveur!");
-    nexte();
+    next();
     
 });
 
@@ -40,8 +40,11 @@ app.use((req, res, next) => {
     next();
 });
 
-// Je dessine mes Routes avex Express
-app.use('/api/fruit', (req, res) => {
+/*Je dessine mes Routes avex Express
+  avec la méthode GET
+  route complète localhost:3003/api/fruit
+*/
+app.get('/api/fruit', (req, res) => {
     console.log("Je passe dans la route /api/fruit");
     const fruit = [
         {
@@ -67,6 +70,63 @@ app.use('/api/fruit', (req, res) => {
     ];
 
     //En terme de réponse, je renvoie le tableau de fruits
+    res.status(200).json(fruit);
+});
+
+app.post('/api/fruit', (req, res) => {
+    console.log("Je passe dans l'API /api/fruit avec la méthode POST");
+     fruit =[
+        {
+            id: 1,
+            nom: "pomme",
+            description: "fruit saisonier riche en vitamine C",
+            prix: 3
+        },
+
+        {
+            id: 2,
+            nom: "Orange",
+            description: "Fruit riche en vitamine C",
+            prix: 3
+        },
+
+        {
+            id: 3,
+            nom: "Poire",
+            description: "fruit à pépins comestible au goût doux et sucré",
+            prix: 2
+        }
+    ];
+    
+   
+    res.json({message:"Je suis dans POST."});
+});
+
+app.put('/api/fruit', (req, res) => {
+    fruit =[
+        {
+            id: 1,
+            nom: "pomme",
+            description: "fruit saisonier riche en vitamine C",
+            prix: 3
+        },
+
+        {
+            id: 2,
+            nom: "Orange",
+            description: "Fruit riche en vitamine C",
+            prix: 3
+        },
+
+        {
+            id: 3,
+            nom: "Poire",
+            description: "fruit à pépins comestible au goût doux et sucré",
+            prix: 2
+        }
+    ]
+        
+    console.log("Je passe dans la route PUT /api/fruit");
     res.status(200).json(fruit);
 });
 /*
